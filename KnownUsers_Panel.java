@@ -10,6 +10,8 @@ public class KnownUsers_Panel extends App{
     private static JTextArea KNOWNUSERS_TEXTAREA = new JTextArea();
     private static JLabel KNOWNUSERS_LABEL = new JLabel("Known Users");
     private static JScrollPane KNOWNUSERS_TEXTAREA_SCROLLPANE = new JScrollPane(KNOWNUSERS_TEXTAREA);
+    private static int KNOWNUSERS_TEXTAREA_HEIGHT = 0;
+    private static int PER_USERNAME_HEIGHT = 17;
 
     //Bools
 
@@ -31,10 +33,30 @@ public class KnownUsers_Panel extends App{
 
         KNOWNUSERS_LABEL.setBounds(20, 0, 140, 50);
         KNOWNUSERS_LABEL.setFont(KNOWNUSERS_LABEL.getFont().deriveFont(14.0f)); //Set font size float 14
-  
-        KNOWNUSERS_TEXTAREA_SCROLLPANE.setBounds(0, 50, 140, (frameHeight - 100));
+
+        DETERMINE_TEXTAREA_HEIGHT_FUNCTION();
+        KNOWNUSERS_TEXTAREA_SCROLLPANE.setBounds(0, 50, 140, KNOWNUSERS_TEXTAREA_HEIGHT);
         ADD_USERNAMES_TO_KNOWNUSERS_TEXTAREA();
         KNOWNUSERS_TEXTAREA.setEditable(false);
+    }
+
+    private void DETERMINE_TEXTAREA_HEIGHT_FUNCTION(){
+        int USERNAME_AMOUNT = 0;
+        try{
+            BufferedReader USERNAME_READER = new BufferedReader(new FileReader("usernames.txt"));
+            while (USERNAME_READER.readLine() != null){
+                USERNAME_AMOUNT++;
+            }
+            KNOWNUSERS_TEXTAREA_HEIGHT = (USERNAME_AMOUNT * PER_USERNAME_HEIGHT);
+            if (KNOWNUSERS_TEXTAREA_HEIGHT >= (frameHeight - 200)){
+                KNOWNUSERS_TEXTAREA_HEIGHT = (frameHeight - 200);
+            }
+            else{
+                KNOWNUSERS_TEXTAREA_HEIGHT = (USERNAME_AMOUNT * PER_USERNAME_HEIGHT);
+            }
+        }catch(IOException ex){
+            System.out.println("DETERMINE_TEXTAREA_HEIGHT_FUNCTION ERROR");
+        }
     }
 
     public void removeKnownUsers_Panel(){
