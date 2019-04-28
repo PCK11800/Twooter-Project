@@ -54,6 +54,7 @@ public class KnownUsers_Panel extends App{
             else{
                 KNOWNUSERS_TEXTAREA_HEIGHT = (USERNAME_AMOUNT * PER_USERNAME_HEIGHT);
             }
+            USERNAME_READER.close();
         }catch(IOException ex){
             System.out.println("DETERMINE_TEXTAREA_HEIGHT_FUNCTION ERROR");
         }
