@@ -12,6 +12,10 @@ public class Login extends App{
        RESET_TO_DEFAULT_STATE = Resets all buttons
     */
 
+    //External Components
+    private static Messages_Panel messages_Panel = new Messages_Panel();
+    private static KnownUsers_Panel knownUsers_Panel = new KnownUsers_Panel();
+
     //Components of Login Panel
     private static JPanel LOGIN_PANEL = new JPanel();
     private static JTextField USERNAME_TEXTFIELD = new JTextField();
@@ -54,7 +58,7 @@ public class Login extends App{
         LOGIN_PANEL.add(TWOOTER_LABEL);
 
         TWOOTER_LABEL.setBounds(110, -10, 200, 75);
-        TWOOTER_LABEL.setFont(TWOOTER_LABEL.getFont().deriveFont(32.0f)); //Set font size float 64
+        TWOOTER_LABEL.setFont(TWOOTER_LABEL.getFont().deriveFont(32.0f)); //Set font size float 32
         USERNAME_TEXTFIELD.setBounds(75, 50, 200, 20);
         PASSWORD_TEXTFIELD.setBounds(75, 80, 200, 20);
         LOGIN_BUTTON.setBounds(100, 110, 150, 20);
@@ -74,6 +78,9 @@ public class Login extends App{
                 CREATE_ACCOUNT_BUTTON_ACTION_LISTENER();
             }
         });
+
+        //Remove External Components
+        REMOVE_EXTERNAL_COMPONENTS();
     }
 
     //LOGIN_BUTTON ACTIONLISTENER FUNCTION
@@ -179,7 +186,7 @@ public class Login extends App{
     public void iniLogoutPanel(){
         LOGOUT_PANEL_WIDTH = 100;
         LOGOUT_PANEL_HEIGHT = 50;
-        LOGOUT_PANEL_X_POSITION = (frameWidth -  100);
+        LOGOUT_PANEL_X_POSITION = (frameWidth -  125);
         LOGOUT_PANEL_Y_POSITION = 0;
 
         mainFrame.add(LOGOUT_PANEL);
@@ -199,6 +206,9 @@ public class Login extends App{
                 LOGOUT_BUTTON_ACTION_LISTENER();
             }
         });
+
+        //Add External Components
+        ADD_EXTERNAL_COMPONENTS();
     }
 
     //LOGOUT_BUTTON_ACTION_LISTENER
@@ -249,7 +259,7 @@ public class Login extends App{
         }
     }
 
-    //Determine if currently logged on or logged off
+    //Determine if currently logged on or logged off and does things accordingly
     private void LOGGED_ON_OR_OFF_FUNCTION(){
         try{
             BufferedReader INFO_READER = new BufferedReader(new FileReader("info.txt"));
@@ -270,6 +280,17 @@ public class Login extends App{
         }catch(IOException ex){
             System.out.println("LOGGED_ON_OR_OFF_FUNCTION ERROR");
         }
+    }
+
+    //Add/Remove External Components
+    private void ADD_EXTERNAL_COMPONENTS(){
+        messages_Panel.addMessagesPanel();
+        knownUsers_Panel.addKnownUsers_Panel();
+    }
+
+    private void REMOVE_EXTERNAL_COMPONENTS(){
+        messages_Panel.removeMessagesPanel();
+        knownUsers_Panel.removeKnownUsers_Panel();
     }
 }
     

@@ -5,6 +5,7 @@ public class App{
     
     static JFrame mainFrame = new JFrame("Twooter!");
     static App app = new App();
+    static TwooterClient twooterClient = new TwooterClient();
 
     //Check if currently logged on
     static boolean isLoggedOn = false;
@@ -14,10 +15,11 @@ public class App{
     
     //Components
     static Login login = new Login();
+    static KnownUsers_Panel knownUsers_Panel = new KnownUsers_Panel();
     
     //Frame Width & Height
-    static int frameWidth = 999;
-    static int frameHeight = 801;
+    static int frameWidth = 1200;
+    static int frameHeight = 800;
 
     //Create Frame and Panel
     //(Frame Width, Frame Height, Panel Width, Panel Height)
