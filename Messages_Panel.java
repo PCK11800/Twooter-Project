@@ -67,6 +67,8 @@ public class Messages_Panel extends App{
         
         SHOW_MESSAGE_AREA.setWrapStyleWord(true);
         SHOW_MESSAGE_AREA.setLineWrap(true);
+        SHOW_MESSAGE_AREA.setEditable(false);
+        SHOW_MESSAGE_AREA.setOpaque(false);
         //Debug
         SHOW_MESSAGE_AREA.setText("DEBUG");
 
